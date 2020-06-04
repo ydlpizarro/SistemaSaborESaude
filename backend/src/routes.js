@@ -6,23 +6,7 @@ const MenuController = require('./controllers/MenuController');
 const routes = Router();
 
 routes.post('/clientes', ClientController.store);
-routes.post('/menu', MenuController.store);
-
-
-////
 routes.delete('/clientes', ClientController.destroy);
-
-
-
-////
 routes.put('/clientes', ClientController.update);
-
-
-
-////
 routes.get('/searchclientes', SearchController.index);
-
-
-
-////
 module.exports = routes;
