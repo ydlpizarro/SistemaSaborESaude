@@ -18,23 +18,23 @@ module.exports = {
         }
     },
     async destroy(request, response) {
-        const { nome } = request.query;
+        const { name } = request.query;
         let client = await Client.findOneAndDelete({
-            name: nome
+            name
         });
         if (client) {
-            return response.json({ "message": `Usuário ${nome} deletado` });
+            return response.json({ "message": `Usuário ${name} deletado` });
         } else {
-            return response.json({ "message": `O usuário ${nome} não existe` });
+            return response.json({ "message": `O usuário ${name} não existe` });
         }
     },
     async update(request, response) {
-        const { id, nome, celular, endereco, taxa } = request.query;
+        const { id, name, cel, endereco, tax } = request.query;
         let client = await Client.findOneAndUpdate({ "id": id }, {
-            "name": nome,
-            "cel": celular,
+            name,
+            cel,
             endereco,
-            "tax": taxa
+            tax
         }, {
             new: true,
         });

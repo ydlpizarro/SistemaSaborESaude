@@ -1,5 +1,4 @@
-const Client = require('../models/Menu');
-const Menu = require('./ClientController');
+const Menu = require('../models/Menu');
 
 module.exports = {
     async store(request, response) {
@@ -18,21 +17,21 @@ module.exports = {
             return response.json(`Menu ${name} já existe!`);
         }
     },
-    async destroy(request,response){
-        const { nome } = request.query;
+    async destroy(request, response) {
+        const { name } = request.query;
         let menu = await Menu.findOneAndDelete({
-            name: nome
+            name
         });
         if (menu) {
-            return response.json({ "message": `Menu ${nome} deletado` });
+            return response.json({ "message": `Menu ${name} deletado` });
         } else {
-            return response.json({ "message": `O Menu ${nome} não existe` });
+            return response.json({ "message": `O Menu ${name} não existe` });
         }
     },
     async update(request, response) {
-        const { id, nome, calorias, valor, status } = request.query;
+        const { id, name, calorias, valor, status } = request.query;
         let menu = await Menu.findOneAndUpdate({ "id": id }, {
-            "name": nome,
+            name,
             calorias,
             valor,
             status
