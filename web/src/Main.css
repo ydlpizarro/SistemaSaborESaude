@@ -9,6 +9,13 @@ main ul {
     list-style: none;
 }
 
+main .menu-ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    list-style: none;
+}
+
 @media(max-width:600px) {
     main ul {
         grid-template-columns: 1fr;
@@ -28,7 +35,24 @@ li.cliente-item header {
     align-items: center;
 }
 
-li.cliente-item header .user-info {
+li.menu-item header .user-info {
+    margin-left: 10px;
+}
+
+li.menu-item {
+    background: white;
+    box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.02);
+    border-radius: 2px;
+    padding: 20px;
+}
+
+li.menu-item header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+li.menu-item header .user-info {
     margin-left: 10px;
 }
 
@@ -39,6 +63,20 @@ li.cliente-item header .user-info {
 }
 
 .user-info span {
+    font-size: 13px;
+    color: #999;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 10px 0;
+}
+
+.menu-info strong {
+    display: block;
+    font-size: 16px;
+    color: #333;
+}
+
+.menu-info span {
     font-size: 13px;
     color: #999;
     font-size: 14px;

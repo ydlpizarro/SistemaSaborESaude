@@ -94,7 +94,7 @@ async function handleAddClient(e){
             <label htmlFor="acao">Ação</label>
             <input name="tax" id="acao" value={acao} onChange={e=>setAcao(e.target.value)}/>
           </div>
-          <button type="submit">Cadastrar</button>
+          <button type="submit">Executar</button>
         </form>
       </aside>
       <main>
