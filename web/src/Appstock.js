@@ -23,7 +23,26 @@ useEffect(()=>{
 async function handleAddStock(e){
   if(acao.toLowerCase()==="cadastrar"){
     e.preventDefault();
-    const response = await api.post('/stocks',{
+    const cardapioResponse = await api.get('/menus');
+    const tamanho = cardapioResponse.data.length;
+    var nomeCardapio = cardapioResponse.data.name;
+    for(var i=0;i<tamanho;i++){
+      if(cardapioResponse.data[i].id==id){
+        const response = await api.post('/stocks',{
+          id,
+          quantidade,
+          status
+        })
+        setId('');
+        setQuantidade('');
+        setStatus('');
+        setStocks([]);
+        const obter = await api.get('/stocks');
+        setStocks(obter.data);
+      }
+    }
+   
+    /* const response = await api.post('/stocks',{
       id,
       quantidade,
       status
@@ -33,7 +52,7 @@ async function handleAddStock(e){
     setStatus('');
     setStocks([]);
     const obter = await api.get('/stocks');
-    setStocks(obter.data);
+    setStocks(obter.data); */
   }
   if(acao.toLowerCase()==="deletar"){
     e.preventDefault();
@@ -87,7 +106,6 @@ async function handleAddStock(e){
           <li key={stock._id} className="cliente-item">
             <header>
               <div className="user-info">
-                
                 <span>Código: {stock.id}</span> <br/>
                 <span>Quantidade: {stock.quantidade}</span>  <br/>
                 <span>Status: {stock.status}</span>               
