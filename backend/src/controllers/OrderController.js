@@ -12,7 +12,8 @@ module.exports = {
             order = await Order.create({
                 id,
                 pedido,
-                idCliente
+                idCliente,
+                status
             })
             return response.json(order);
         } else {
@@ -34,7 +35,8 @@ module.exports = {
         const { id, pedido, idCliente } = request.query;
         let order = await order.findOneAndUpdate({ id }, {
             pedido,
-            idCliente
+            idCliente,
+            status
         }, {
             new: true,
         });

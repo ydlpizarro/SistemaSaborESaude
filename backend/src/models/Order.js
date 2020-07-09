@@ -4,10 +4,10 @@ const OrderSchema = new mongoose.Schema({
     id: Number,
     pedido: [{
         idMenu: Number,
-        valorPedido: Number,
         quantidade: Number,
-        observacao: String
+        observacao: String,
     }],
-    idCliente: Number
+    idCliente: Number,
+    status: String
 });
 module.exports = mongoose.model('order', OrderSchema);

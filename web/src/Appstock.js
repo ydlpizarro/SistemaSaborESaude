@@ -79,7 +79,7 @@ async function handleAddStock(e){
   return (
     <div id="appstock">
       <aside>
-        <strong>Stock</strong>
+        <strong>Estoque</strong>
         <form onSubmit={handleAddStock}>
           <div className="input-block">
             <label htmlFor="id">Código</label>
