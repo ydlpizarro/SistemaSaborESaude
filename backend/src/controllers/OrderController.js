@@ -11,7 +11,16 @@ module.exports = {
         if (!order) {
             order = await Order.create({
                 id,
-                pedido,
+                idCardapio0,
+                idQuantidade0,
+                idCardapio1,
+                idQuantidade1,
+                idCardapio2,
+                idQuantidade2,
+                idCardapio3,
+                idQuantidade3,
+                idCardapio4,
+                idQuantidade4,
                 idCliente,
                 status
             })
@@ -33,10 +42,19 @@ module.exports = {
     },
     async update(request, response) {
         const { id, pedido, idCliente } = request.query;
-        let order = await order.findOneAndUpdate({ id }, {
-            pedido,
-            idCliente,
-            status
+        let order = await order.findOneAndUpdate({ id }, {            
+                idCardapio0,
+                idQuantidade0,
+                idCardapio1,
+                idQuantidade1,
+                idCardapio2,
+                idQuantidade2,
+                idCardapio3,
+                idQuantidade3,
+                idCardapio4,
+                idQuantidade4,
+                idCliente,
+                status
         }, {
             new: true,
         });

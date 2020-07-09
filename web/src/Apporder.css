@@ -1,4 +1,4 @@
-#app {
+#apporder {
     max-width: 1200px;
     margin: 0 auto;
     padding: 60px 30px;
@@ -7,19 +7,19 @@
     align-items: flex-start;
 }
 
-#app main {
+#apporder main {
     margin-left: 30px;
 }
 
 @media(max-width:800px) {
-    #app {
+    #apporder {
         flex-direction: column;
     }
-    #app main {
+    #apporder main {
         margin-left: 0;
         margin-top: 30px;
     }
-    #app aside {
+    #apporder aside {
         width: 100%;
     }
 }

@@ -2,11 +2,16 @@ const mongoose = require('mongoose');
 
 const OrderSchema = new mongoose.Schema({
     id: Number,
-    pedido: [{
-        idMenu: Number,
-        quantidade: Number,
-        observacao: String,
-    }],
+    idCardapio0: Number,
+    idQuantidade0: Number,
+    idCardapio1: Number,
+    idQuantidade1: Number,
+    idCardapio2: Number,
+    idQuantidade2: Number,
+    idCardapio3: Number,
+    idQuantidade3: Number,
+    idCardapio4: Number,
+    idQuantidade4: Number,
     idCliente: Number,
     status: String
 });
