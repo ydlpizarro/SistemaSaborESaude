@@ -1,9 +1,13 @@
 const Client = require('../models/Client');
 
 module.exports = {
+    async index(request, response) {
+        const clients = await Client.find();
+        return response.json(clients);
+    },
     async store(request, response) {
         const { id, name, cel, endereco, tax } = request.body;
-        let client = await Client.findOne({ "name": name.toLowerCase() });
+        let client = await Client.findOne({ id });
         if (!client) {
             client = await Client.create({
                 id,
@@ -14,23 +18,23 @@ module.exports = {
             })
             return response.json(client);
         } else {
-            return response.json(`Usuario ${name} já existe!`);
+            return response.json(`Usuario código ${id} já existe!`);
         }
     },
     async destroy(request, response) {
-        const { name } = request.query;
+        const { id } = request.query;
         let client = await Client.findOneAndDelete({
-            name
+            id
         });
         if (client) {
-            return response.json({ "message": `Usuário ${name} deletado` });
+            return response.json({ "message": `Usuário código ${id} apagado do sistema.` });
         } else {
-            return response.json({ "message": `O usuário ${name} não existe` });
+            return response.json({ "message": `O usuário ${id} não existe` });
         }
     },
     async update(request, response) {
         const { id, name, cel, endereco, tax } = request.query;
-        let client = await Client.findOneAndUpdate({ "id": id }, {
+        let client = await Client.findOneAndUpdate({ id }, {
             name,
             cel,
             endereco,

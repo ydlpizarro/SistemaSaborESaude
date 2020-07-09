@@ -1,6 +1,10 @@
 const Stock = require('../models/Stock');
 
 module.exports = {
+    async index(request, response) {
+        const stocks = await Stock.find();
+        return response.json(stocks);
+    },
     async store(request, response) {
         const { id, quantidade, status } = request.body;
         let stock = await Stock.findOne({ id });

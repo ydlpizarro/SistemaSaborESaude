@@ -1,6 +1,10 @@
 const Order = require('../models/Order');
 
 module.exports = {
+    async index(request, response) {
+        const orders = await Order.find();
+        return response.json(orders);
+    },
     async store(request, response) {
         const { id, pedido, idCliente } = request.body;
         let order = await Order.findOne({ id });
