@@ -14,7 +14,9 @@ body {
 html,
 body,
 #root,
-#root2 {
+#root2,
+#root3,
+#root4 {
     height: 100%;
 }
 
