@@ -6,6 +6,6 @@ module.exports = {
         const stocks = await Stock.find({
             id
         });
-        return response.json({ stocks });
+        return response.json(stocks);
     }
 }

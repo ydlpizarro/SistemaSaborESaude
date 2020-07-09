@@ -12,6 +12,7 @@ function App() {
   const [cel,setCel] = useState('');
   const [endereco,setEndereco] = useState('');
   const [tax,setTax] = useState('');
+  const [acao,setAcao] =useState('');
 
 useEffect(()=>{
   async function loadClients(){
@@ -22,29 +23,56 @@ useEffect(()=>{
 },[]);
 
 async function handleAddClient(e){
-  e.preventDefault();
-  const response = await api.post('/clientes',{
-    id,
-    name,
-    cel,
-    endereco,
-    tax
-  })
-  setId('');
-  setName('');
-  setCel('');
-  setEndereco('');
-  setTax('');
-  setClients([...clients,response.data]);
-}
+  if(acao.toLowerCase()==="cadastrar"){
+    e.preventDefault();
+    const response = await api.post('/clientes',{
+      id,
+      name,
+      cel,
+      endereco,
+      tax
+    })
+    setId('');
+    setName('');
+    setCel('');
+    setEndereco('');
+    setTax('');
+    setClients([]);
+    const obter = await api.get('/clientes');
+    setClients(obter.data);
+  }
+  if(acao.toLowerCase()==="deletar"){
+    e.preventDefault();
+    const response = await api.delete(`/clientes/?id=${id}`);
+    setId('');
+    setName('');
+    setCel('');
+    setEndereco('');
+    setTax('');
+    setClients([]);
+    const obter = await api.get('/clientes');
+    setClients(obter.data);
+  }
+  if(acao.toLowerCase()==="atualizar"){
+    e.preventDefault();
+    const response = await api.put(`/clientes/?id=${id}&name=${name}&cel=${cel}&endereco=${endereco}&tax=${tax}`);
+    const obter = await api.get('/clientes');
+    setClients(obter.data);
+  }
+  if(acao.toLowerCase()==="pesquisar"){
+    e.preventDefault();
+    const response = await api.get(`/searchclientes/?&name=${name}`);
+    setClients(response.data);
+  }
+};
   return (
     <div id="app">
       <aside>
-        <strong>Cadastrar</strong>
+        <strong>Clientes</strong>
         <form onSubmit={handleAddClient}>
           <div className="input-block">
             <label htmlFor="name">Nome</label>
-            <input name="name" id="name" required value={name} onChange={e=>setName(e.target.value)}/>
+            <input name="name" id="name" value={name} onChange={e=>setName(e.target.value)}/>
           </div>
           <div className="input-block">
             <label htmlFor="id">Código</label>
@@ -52,7 +80,7 @@ async function handleAddClient(e){
           </div>
           <div className="input-block">
             <label htmlFor="cel">Celular</label>
-            <input name="cel" id="cel" required value={cel} onChange={e=>setCel(e.target.value)}/>
+            <input name="cel" id="cel" value={cel} onChange={e=>setCel(e.target.value)}/>
           </div>
           <div className="input-block">
             <label htmlFor="endereco">Endereço</label>
@@ -61,6 +89,10 @@ async function handleAddClient(e){
           <div className="input-block">
             <label htmlFor="tax">Taxa de Entrega</label>
             <input name="tax" id="tax" value={tax} onChange={e=>setTax(e.target.value)}/>
+          </div>
+          <div className="input-block">
+            <label htmlFor="acao">Ação</label>
+            <input name="tax" id="acao" value={acao} onChange={e=>setAcao(e.target.value)}/>
           </div>
           <button type="submit">Cadastrar</button>
         </form>
@@ -74,15 +106,15 @@ async function handleAddClient(e){
                 <strong>{client.name}</strong>
                 <span>Código: {client.id}</span> <br/>
                 <span>Celular: {client.cel}</span>  <br/>
-                <span>Celular: {client.tax}</span>               
+                <span>Taxa: {client.tax}</span>               
               </div>
             </header>
-            <p>{client.endereco}</p>          
+            <p>{client.endereco}</p>            
           </li>))}
         </ul>
       </main>
     </div>
-  )
+  );
 
 }
 

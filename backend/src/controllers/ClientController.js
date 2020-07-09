@@ -16,9 +16,9 @@ module.exports = {
                 endereco,
                 tax
             })
-            return response.json(client);
+            return response.json({ "message": `Usuário cadastrado` });
         } else {
-            return response.json(`Usuario código ${id} já existe!`);
+            return response.json({ "message": `O usuário código ${id} já existe!` });
         }
     },
     async destroy(request, response) {

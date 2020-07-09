@@ -6,6 +6,6 @@ module.exports = {
         const orders = await Order.find({
             id
         });
-        return response.json({ orders });
+        return response.json(orders);
     }
 }

@@ -6,6 +6,6 @@ module.exports = {
         const clients = await Client.find({
             name: { $regex: `.*${name}.*`, $options: 'i' }
         });
-        return response.json({ clients });
+        return response.json(clients);
     }
 }

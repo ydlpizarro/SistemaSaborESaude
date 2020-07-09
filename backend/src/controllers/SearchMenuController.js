@@ -6,6 +6,6 @@ module.exports = {
         const menus = await Menu.find({
             name: { $regex: `.*${name}.*`, $options: 'i' }
         });
-        return response.json({ menus });
+        return response.json(menus);
     }
 }
