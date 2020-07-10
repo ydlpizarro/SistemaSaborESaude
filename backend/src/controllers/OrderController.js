@@ -6,22 +6,15 @@ module.exports = {
         return response.json(orders);
     },
     async store(request, response) {
-        const { id, pedido, idCliente } = request.body;
+        const { id,idcardapio,idquantidade,idcliente,status} = request.body;
+        
         let order = await Order.findOne({ id });
         if (!order) {
             order = await Order.create({
                 id,
-                idCardapio0,
-                idQuantidade0,
-                idCardapio1,
-                idQuantidade1,
-                idCardapio2,
-                idQuantidade2,
-                idCardapio3,
-                idQuantidade3,
-                idCardapio4,
-                idQuantidade4,
-                idCliente,
+                idcardapio,
+                idquantidade,
+                idcliente,
                 status
             })
             return response.json(order);
@@ -41,23 +34,18 @@ module.exports = {
         }
     },
     async update(request, response) {
-        const { id, pedido, idCliente } = request.query;
-        let order = await order.findOneAndUpdate({ id }, {            
-                idCardapio0,
-                idQuantidade0,
-                idCardapio1,
-                idQuantidade1,
-                idCardapio2,
-                idQuantidade2,
-                idCardapio3,
-                idQuantidade3,
-                idCardapio4,
-                idQuantidade4,
-                idCliente,
-                status
+        const {id,idcardapio,idquantidade,idcliente,status} = request.query;
+
+        let order = await order.findOneAndUpdate({ id }, {
+            idcardapio,
+            idquantidade,
+            idcliente,
+            status
         }, {
             new: true,
         });
+
+
         if (order) {
             return response.json({ "message": `Pedido código ${id} atualizado` });
         } else {
